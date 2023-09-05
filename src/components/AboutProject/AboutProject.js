@@ -1,5 +1,4 @@
 import './AboutProject.css';
-// import landingLogo from '../../images/landingLogo.svg';
 
 const AboutProject = () => {
    return (
