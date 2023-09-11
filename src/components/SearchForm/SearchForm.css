@@ -1,0 +1,51 @@
+.search-form {
+   
+   padding: 70px 70px 0;
+
+}
+
+.search-form__container {
+   max-width: 100%;
+   padding: 0 30px 0 19px;
+   height: 72px;
+   background-color: #fdfdfd;
+   border-radius: 9px;
+   box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+}
+
+.search-form__form {
+   display: flex;
+   align-items: center;
+   height: 100%;
+}
+
+.search-form__input {
+   background: url('../../images/iconSearch.svg') no-repeat left center;
+   background-color: #FDFDFD;
+   width: 100%;
+   border: none;
+   padding-left: 48px;
+   font-size: 18px;
+   font-weight: 400;
+   line-height: 20px;
+   color: #A0A0A0;
+}
+
+.search-form__btn {
+   background-color: black;
+   border: none;
+   color: #fff;
+   width: 59px;
+   height: 34px;
+   border-radius: 44px;
+   font-size: 11px;
+   font-weight: 500;
+   line-height: 18px;
+   text-align: center;
+}
+
+.search-form__border {
+   display: block;
+   border-bottom: 1px solid #E8E8E8;
+   margin: 69px 0 10px;
+}
