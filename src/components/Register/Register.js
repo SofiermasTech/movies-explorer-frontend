@@ -9,22 +9,25 @@ const Register = () => {
    return (
       <section className="register-form">
          <div className="register-form__container">
-            <Link to="/">
+            <Link to="/" className="register-form__logo-link">
                <img className="register-form__logo" src={logo} alt="Логотип" />
             </Link>
             <h1 className="register-form__title">Добро пожаловать!</h1>
             <form className="register-form__form">
                <label className="register-form__label">Имя</label>
                <input className="register-form__input" type="text" />
+               <span className="register-form__error"></span>
                <label className="register-form__label">E-mail</label>
                <input className="register-form__input" type="email" />
+               <span className="register-form__error"></span>
                <label className="register-form__label">Пароль</label>
                <input className="register-form__input" type="password" />
-               <button className="register-form__btn" type="submit">Зарегистрироваться</button>
+               <span className="register-form__error"></span>
+               <button className="btn register-form__btn" type="submit">Зарегистрироваться</button>
             </form>
             <div className="register-form__container-link">
                <span className="register-form__text">Уже зарегистрированы?</span>
-               <Link to="/signin" className="register-form__link">Войти</Link>
+               <Link to="/signin" className="link register-form__link">Войти</Link>
             </div>
          </div>
 

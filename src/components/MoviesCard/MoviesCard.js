@@ -10,8 +10,8 @@ const MoviesCard = () => {
             <h3 className="card__name">Баския: Взрыв реальности</h3>
             <p className="card__time">1ч 17м</p>
          </div>
-         <button className="card__btn">Сохранить</button>
-         <button className="card__btn-saved"></button>
+         <button className="btn card__btn">Сохранить</button>
+         <button className="btn card__btn-saved"></button>
       </li>
    )
 };

@@ -9,13 +9,13 @@ const Footer = () => {
             <p className="footer__date">&copy; 2023</p>
             <ul className="footer__list">
                <li className="footer__item">
-                  <a className="link footer__link" href=".">
+                  <a className="link footer__link" href="https://practicum.yandex.ru" target="blank">
                   Яндекс.Практикум
                   </a>
                </li>
                <li className="footer__item">
                   <a
-                     className="link footer__link" href=".">
+                     className="link footer__link" href="https://github.com/SofiermasTech" target="blank">
                      Github
                   </a>
                </li>

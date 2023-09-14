@@ -1,22 +1,23 @@
 .search-form {
-   
-   padding: 70px 70px 0;
-
+   padding: 66px 70px 0;
 }
 
 .search-form__container {
-   max-width: 100%;
-   padding: 0 30px 0 19px;
-   height: 72px;
-   background-color: #fdfdfd;
-   border-radius: 9px;
-   box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+   width: 100%;
 }
 
 .search-form__form {
    display: flex;
    align-items: center;
-   height: 100%;
+   width: 100%;
+   box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+   background-color: #fdfdfd;
+   border-radius: 9px;
+}
+
+.search-form__input-container {
+   display: flex;
+   width: 100%;
 }
 
 .search-form__input {
@@ -29,23 +30,68 @@
    font-weight: 400;
    line-height: 20px;
    color: #A0A0A0;
+   outline: none;
+   margin: 19px;
 }
 
 .search-form__btn {
    background-color: black;
-   border: none;
    color: #fff;
-   width: 59px;
-   height: 34px;
-   border-radius: 44px;
+   padding: 8px 11px;
+   border-radius: 40px;
    font-size: 11px;
    font-weight: 500;
    line-height: 18px;
    text-align: center;
+   margin: 19px;
 }
 
 .search-form__border {
    display: block;
    border-bottom: 1px solid #E8E8E8;
    margin: 69px 0 10px;
+}
+
+@media screen and (max-width: 880px) {
+   .search-form {
+      padding: 80px 30px 0;
+   }
+
+   .search-form__border {
+      margin: 106px 0 10px;
+   }
+}
+
+@media screen and (max-width: 500px) {
+   .search-form {
+      padding: 74px 10px 0;
+   }
+
+   .search-form__form {
+      flex-direction: column;
+      box-shadow: none;
+      background-color: transparent;
+      border-radius: 0;
+   }
+
+   .search-form__input-container {
+      background-color: #fdfdfd;
+      border-radius: 9px;
+      box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+      justify-content: space-between;
+   }
+
+   .search-form__input {
+      background-image: none;
+      max-width: 60%;
+      padding-left: 0px;
+      margin-left: 19px;
+      font-size: 14px;
+   }
+
+   .search-form__border {
+      display: block;
+      border-bottom: 1px solid #E8E8E8;
+      margin: 0 0 10px;
+   }
 }

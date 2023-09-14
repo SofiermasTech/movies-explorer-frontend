@@ -13,7 +13,6 @@
    list-style: none;
    display: flex;
    justify-content: center;
-   
 }
 
 .nav__item {
@@ -22,5 +21,12 @@
    font-weight: 500;
    font-size: 13px;
    line-height: 16px;
-   cursor: pointer;
+   border-bottom: solid 1px #fff;
+}
+
+@media screen and (max-width: 500px) {
+   .nav__item {
+      margin: 0 10px;
+      font-size: 11px;
+   }
 }

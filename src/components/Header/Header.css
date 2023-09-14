@@ -1,10 +1,14 @@
 .header {
    max-height: 74px;
    max-width: 100%;
-   background-color: #F3C1F8;
+   background-color: #fff;
    padding: 18px 70px;
    display: flex;
    justify-content: space-between;
+}
+
+.header_color {
+   background-color: #F3C1F8;
 }
 
 .header__logo {
@@ -12,49 +16,14 @@
    height: 38px;
 }
 
-.header__container {
-   display: flex;
-   justify-content: space-between;
+@media screen and (max-width: 800px) {
+   .header {
+     padding: 18px 30px;
+   }
 }
 
-.header__list {
-   list-style: none;
-   padding: 0;
-   margin: 0;
-   display: flex;
-}
-
-.header__item {
-   margin: 10px;
-}
-
-.header__link {
-   text-decoration: none;
-   color: black;
-   font-size: 14px;
-   line-height: 18px;
-}
-
-.header__button-container {
-display: flex;
-align-items: center;
-}
-
-.header__button-account {
-   margin-left: 40px;
-   padding: 0;
-   background-color: transparent;
-   border: none;
-   vertical-align: middle;
-   font-weight: 500;
-   font-size: 14px;
-   line-height: 16px;
-   text-align: right;
-}
-
-.header__logo-account {
-   width: 30px;
-   height: 30px;
-   margin-left: 13px;
-   text-align: left;
+@media screen and (max-width: 800px) {
+   .header {
+     padding: 18px 14px;
+   }
 }

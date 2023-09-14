@@ -13,13 +13,11 @@ const AboutMe = () => {
                <p className="about__student-text">Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена
                   и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.
                </p>
-               <a className="about__student-link" href='.'>Github</a>
+               <a className="link about__student-link" href='https://github.com/SofiermasTech' target="blank">Github</a>
             </article>
-
             <div className="about__container-foto">
                <img className="about__student-foto" src={studentPhoto} alt="Фото студента" />
             </div>
-
          </div>
       </section>
    )

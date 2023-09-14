@@ -10,10 +10,13 @@ const MoviesCardList = () => {
             <MoviesCard />
             <MoviesCard />
             <MoviesCard />
-
+            <MoviesCard />
+            <MoviesCard />
+            <MoviesCard />
+            <MoviesCard />
          </ul>
-         <div className="movies-list__btn-container">
-            <button className="movies-list__btn">Ещё</button>
+         <div className="movies__btn-container">
+            <button className="btn movies__btn-else">Ещё</button>
          </div>
       </section>
    )
