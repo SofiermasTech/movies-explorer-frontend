@@ -7,9 +7,9 @@ const SearchForm = () => {
       <section className="search-form">
 
          <div className="search-form__container">
-            <form action="" className="search-form__form">
+            <form className="search-form__form">
                <div className="search-form__input-container">
-                  <input className="search-form__input" type="text" placeholder="Фильм" />
+                  <input className="search-form__input" type="text" placeholder="Фильм" required />
                   <button className="btn search-form__btn" type="submit">Найти</button>
                </div>
                <FilterCheckbox />

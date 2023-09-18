@@ -17,12 +17,12 @@ const AboutProject = () => {
             </article>
          </div>
          <div className="about-project__time-line">
-            <div className="about-project__backend">1 неделя</div>
-            <div className="about-project__frontend">4 недели</div>
+            <span className="about-project__backend">1 неделя</span>
+            <span className="about-project__frontend">4 недели</span>
          </div>
          <div className="about-project__time-text">
-            <div className="about-project__backend-text">Back-end</div>
-            <div className="about-project__frontend-text">Front-end</div>
+            <p className="about-project__backend-text">Back-end</p>
+            <p className="about-project__frontend-text">Front-end</p>
          </div>
       </section>
    )

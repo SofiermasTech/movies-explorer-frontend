@@ -1,7 +1,7 @@
 @import url('./vendor/normalize.css');
 @import url('./vendor/fonts.css');
 
-.page {
+body {
    min-width: 320px;
    margin: 0 auto;
    background-size: 100%;
@@ -13,6 +13,11 @@
    -webkit-text-size-adjust: 100%;
    -ms-text-size-adjust: 100%;
    -moz-text-size-adjust: 100%;
+}
+
+.page {
+   display: flex;
+   flex-direction: column;
 }
 
 .link {
@@ -34,5 +39,4 @@
 
 .btn:hover {
    opacity: .8;
- }
-
+}

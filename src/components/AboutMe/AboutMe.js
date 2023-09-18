@@ -6,7 +6,7 @@ const AboutMe = () => {
       <section className="about" id="about">
          <h2 className="about__title">Студент</h2>
          <div className="about__container">
-            <article className="about__student">
+            <div className="about__student">
                <h3 className="about__student-name">Ермакова София</h3>
                <h4 className="about__student-job">Фронтенд-разработчик
                </h4>
@@ -14,7 +14,7 @@ const AboutMe = () => {
                   и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.
                </p>
                <a className="link about__student-link" href='https://github.com/SofiermasTech' target="blank">Github</a>
-            </article>
+            </div>
             <div className="about__container-foto">
                <img className="about__student-foto" src={studentPhoto} alt="Фото студента" />
             </div>

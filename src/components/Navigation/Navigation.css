@@ -92,6 +92,10 @@
    display: none;
 }
 
+.burger__btn:hover {
+   opacity: .6;
+}
+
 @media screen and (max-width: 768px) {
 
    .navigation__movies,
@@ -101,12 +105,5 @@
 
    .burger__btn {
       display: block;
-   }
-}
-
-@media screen and (max-width: 425px) {
-   .burger__btn {
-      width: 40px;
-      height: 43px;
    }
 }

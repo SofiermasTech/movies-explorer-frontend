@@ -17,7 +17,7 @@
    top: 0;
    right: 0;
    bottom: 0;
-   width: 70%;
+   width: 68%;
    height: 100%;
    background-color: #fff;
    display: flex;
@@ -43,10 +43,10 @@
    flex-direction: column;
    align-items: center;
    gap: 22px;
-   margin-top: 90px;
+   margin-top: 160px;
 }
 
-.burger-link {
+.burger__link {
    text-decoration: none;
    font-weight: 500;
    font-size: 18px;
@@ -56,7 +56,7 @@
    transition: 0.3s ease;
 }
 
-.burger-link_active {
+.burger__link_active {
    text-decoration: none;
    font-weight: 500;
    font-size: 18px;
@@ -92,11 +92,19 @@
 }
 
 @media screen and (max-width: 425px) {
-   /* .burger__menu {
-      max-width: 325px;
-   } */
-
    .burger__container {
       width: 100%;
    }
+
+   .burger__list {
+      margin-top: 140px;
+   }
+
+   .burger__close-btn {
+      width: 26px;
+      height: 26px;
+      top: 13px;
+      right: 20px;
+   }
+
 }

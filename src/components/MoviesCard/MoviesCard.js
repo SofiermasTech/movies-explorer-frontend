@@ -1,17 +1,19 @@
 import './MoviesCard.css';
-import poster from '../../images/poster.png';
 
-
-const MoviesCard = () => {
+const MoviesCard = ({ movie, isSavedMoviesPage }) => {
    return (
       <li className="card">
-         <img className="card__image" src={poster} alt="Фильм" />
+         <img className="card__image" src={movie.image} alt={movie.nameRU} />
          <div className="card__container">
-            <h3 className="card__name">Баския: Взрыв реальности</h3>
-            <p className="card__time">1ч 17м</p>
+            <h2 className="card__name">{movie.nameRU}</h2>
+            <p className="card__time">{movie.duration}</p>
          </div>
-         <button className="btn card__btn">Сохранить</button>
-         <button className="btn card__btn-saved"></button>
+         {movie.save && !isSavedMoviesPage && <button type="button" className="btn card__btn-saved" />}
+         {isSavedMoviesPage ? (
+            <button type="button" className="btn card__btn-delete" />
+         ) : (
+            <button type="submit" className="btn card__btn">Сохранить</button>
+         )}
       </li>
    )
 };

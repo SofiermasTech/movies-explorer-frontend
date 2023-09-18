@@ -1,38 +1,50 @@
+import useFormAndValidation from '../../hooks/useFormAndValidation';
 import './Profile.css';
-import Header from '../Header/Header';
-// import logo from '../../images/logo.svg';
 
 
-const Profile = ({loggedIn}) => {
+
+const Profile = ({ onUpdateUser, onLogOut }) => {
+   const { values, handleChange } = useFormAndValidation();
+
+   const handleSubmit = (evt) => {
+      evt.preventDefault();
+
+      onUpdateUser({
+         name: values.name,
+         email: values.email,
+      });
+   };
+
    return (
-      <section className="profile">
-         <Header loggedIn={loggedIn} />
+      <main className="profile">
+
          <div className="profile__container">
 
             <h1 className="profile__title">Привет, София!</h1>
-            <form className="profile__form">
-               <div className="profile__container_name">
+            <form className="profile__form" onSubmit={handleSubmit}>
+               <div className="profile__container-name">
                   <label className="profile__label">Имя</label>
-                  <input className="profile__input" type="" value="София" />
+                  <input className="profile__input" type="text" name="name" placeholder="Имя" required minLength="2"
+                     maxLength="30" value={values.name || ""} onChange={handleChange} />
                </div>
-               <div className="profile__line"></div>
-               <div className="profile__container_email">
+               <div className="profile__container-email">
                   <label className="profile__label">E-mail</label>
-                  <input className="profile__input" type="email" value="pochta@yandex.ru" />
+                  <input className="profile__input" name="email" type="email" placeholder="E-mail"
+                     required value={values.email || ""} onChange={handleChange} />
                </div>
-               <div className="profile__container_btn-save">
+               <div className="profile__container-btn-save">
                   <button className="btn profile__btn-save" type="submit">Сохранить</button>
                </div>
-               <div className="profile__container_btn">
-                  <button className="btn profile__btn-edit" type="submit">Редактировать</button>
-                  <button className="btn profile__btn-out" type="button">Выйти из аккаунта</button>
+               <div className="profile__container-btn">
+                  <button className="btn profile__btn-edit" type="button">Редактировать</button>
+                  <button className="btn profile__btn-out" type="button" onClick={onLogOut} >Выйти из аккаунта</button>
                </div>
             </form>
 
          </div>
 
 
-      </section>
+      </main>
    )
 };
 

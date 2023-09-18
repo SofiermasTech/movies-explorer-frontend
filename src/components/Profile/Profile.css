@@ -21,20 +21,16 @@
    line-height: 13px;
 }
 
-.profile__container_name {
+.profile__container-name {
    display: flex;
    justify-content: space-between;
    align-items: center;
    margin-bottom: 10px;
-
-}
-
-.profile__line {
    border-bottom: solid 1px #E8E8E8;
-   margin-bottom: 5px;
+   padding-bottom: 5px;
 }
 
-.profile__container_email {
+.profile__container-email {
    display: flex;
    justify-content: space-between;
    align-items: center;
@@ -43,13 +39,18 @@
 .profile__input {
    width: 70%;
    outline: none;
-   padding: 0 5px;
+   padding: 0 2px;
    border: none;
    height: 30px;
    text-align: right;
 }
 
-.profile__container_btn-save {
+.profile__input:focus {
+   border-right: solid 3px #F3C1F8;
+   border-radius: 3px;
+}
+
+.profile__container-btn-save {
    margin: 169px 0 16px;
    display: none;
 }
@@ -67,23 +68,27 @@
    color: #c2c2c2;
 }
 
-.profile__container_btn {
+.profile__container-btn {
    display: flex;
    flex-direction: column;
    align-items: center;
    row-gap: 16px;
-   font-size: 13px;
-   line-height: 16px;
-   margin: 210px 0 16px;
+   margin: 200px 0 16px;
 }
 
 .profile__btn-edit {
    background-color: transparent;
+   font-size: 13px;
+   line-height: 16px;
+   font-weight: 500;
 }
 
 .profile__btn-out {
    background-color: transparent;
    color: #FF4062;
+   font-size: 13px;
+   line-height: 16px;
+   font-weight: 500;
 }
 
 @media screen and (max-width: 800px) {
@@ -98,21 +103,30 @@
 
 @media screen and (max-width: 500px) {
    .profile__container {
+      margin: 66px auto;
       padding: 0 30px;
    }
-
+ 
    .profile__title {
-      margin-top: 70px;
+      margin-top: 0px;
       margin-bottom: 20px;
    }
 
    .profile__form {
-      margin-top: 80px;
+      margin-top: 70px;
    }
 
-   .profile__container_btn {
+   .profile__container-btn {
+      margin: 372px 0 16px;
+   }
+
+   .profile__btn-out {
       font-size: 12px;
       line-height: 14px;
-      margin: 360px 0 16px;
+   }
+
+   .profile__btn-edit {
+      font-size: 12px;
+      line-height: 14px;
    }
 }

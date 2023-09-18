@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import './Header.css';
-import logo from '../../images/logo.svg';
+import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
 
 
@@ -10,13 +10,28 @@ const Header = ({ loggedIn }) => {
    const location = useLocation().pathname;
 
    return (
-      <header className={`header ${location === '/' ? "header_color" : ""}`}>
-         <Link to="/">
-            <img className="header__logo" src={logo} alt="Логотип" />
-         </Link>
+      <>
+         {location === '/'
+            || location === '/movies'
+            || location === '/saved-movies'
+            || location === '/profile' ? (
+            <header className={`header ${location === '/' ? "header_color" : ""}`}>
+               <Logo />
+               {loggedIn ? (
                   <Navigation loggedIn={loggedIn} />
-      </header>
+               ) : (
+                  <div className="navigation__btn-auth">
+                     <Link className="link navigation__btn-register" to="/signup">Регистрация</Link>
+                     <Link className="link navigation__btn-login" to="/signin">Войти</Link>
+                  </div>
+               )}
+            </header>
+         ) : (
+            ''
+         )}
+      </>
    )
+
 };
 
 export default Header;

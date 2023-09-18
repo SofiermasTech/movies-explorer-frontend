@@ -4,19 +4,19 @@ import AboutProject from '../AboutProject/AboutProject';
 import Techs from '../Techs/Techs';
 import AboutMe from '../AboutMe/AboutMe';
 import Portfolio from '../Portfolio/Portfolio';
-import Footer from '../Footer/Footer';
 
-const Main = ({loggedIn}) => {
+const Main = () => {
    return (
-      <>
-         <Promo loggedIn={loggedIn} />
+
+      <main>
+         <Promo />
          <NavTab />
          <AboutProject />
          <Techs />
          <AboutMe />
          <Portfolio />
-         <Footer />
-      </>
+      </main>
+
    )
 };
 

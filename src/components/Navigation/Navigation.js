@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import './Navigation.css';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
@@ -34,19 +34,16 @@ const Navigation = ({ loggedIn }) => {
                <div className="navigation__button-container">
                   <NavLink to="/profile" className="link navigation__link-account" >
                      Аккаунт
-                     <button className={`btn navigation__button-account ${location === '/' ? "navigation__button-account_color" : ""}`}></button>
+                     <button type="button" className={`btn navigation__button-account ${location === '/' ? "navigation__button-account_color" : ""}`}></button>
                   </NavLink>
                </div>
             </>
          ) : (
-            <div className="navigation__btn-auth">
-               <Link className="link navigation__btn-register" to="/signup">Регистрация</Link>
-               <Link className="link navigation__btn-login" to="/signin">Войти</Link>
-            </div>
-
+            ''
          )}
+
          {!isBurgerMenuOpen && loggedIn ? (
-            <button className='btn burger__btn' onClick={toggleBurgerMenu} />
+            <button type="button" className='btn burger__btn' onClick={toggleBurgerMenu} />
          ) : <BurgerMenu onClose={toggleBurgerMenu} />
          }
       </nav>

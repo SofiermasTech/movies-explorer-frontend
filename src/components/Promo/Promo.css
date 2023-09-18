@@ -1,7 +1,7 @@
 .promo {
    margin: 0;
    width: 100%;
-   min-height: 598px;
+   min-height: 520px;
    background: #F3C1F8 url('../../images/landingLogo.svg') no-repeat center;
    background-size: 320px 320px;
 }
@@ -14,6 +14,7 @@
    font-weight: 400;
    text-align: center;
    line-height: 58px;
+   letter-spacing: -2px;
 }
 
 .promo__logo {
@@ -28,7 +29,7 @@
    }
 
    .promo {
-      min-height: 860px;
+      min-height: 779px;
    }
 }
 
@@ -41,6 +42,6 @@
 
    .promo {
       background-size: 248px;
-      min-height: 644px;
+      min-height: 563px;
    }
 }

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import Main from '../Main/Main';
-// import Footer from '../Footer/Footer';
-// import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
@@ -13,11 +13,18 @@ import Movies from '../Movies/Movies';
 
 
 function App() {
+   const navigate = useNavigate();
    const [loggedIn, setLoggedIn] = useState(true);
+
+   function onSignOut() {
+      // localStorage.removeItem('token');
+      setLoggedIn(false);
+      navigate('/');
+   }
 
    return (
       <div className="page">
-         {/*  <Header isloggedIn={true} /> */}
+         <Header loggedIn={true} />
          <Routes>
             <Route exact path="/" element={<Main loggedIn={loggedIn} />}
             />
@@ -29,12 +36,12 @@ function App() {
             />
             <Route path="/saved-movies" element={<SavedMovies loggedIn={loggedIn} />}
             />
-            <Route path="/profile" element={<Profile loggedIn={loggedIn} />}
+            <Route path="/profile" element={<Profile loggedIn={loggedIn} onLogOut={onSignOut} />}
             />
             <Route path="*" element={<PageNotFound />}
             />
          </Routes>
-
+         <Footer />
       </div>
    );
 }
