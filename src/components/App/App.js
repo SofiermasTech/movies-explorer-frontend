@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, Navigate, } from 'react-router-dom';
 
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -14,7 +14,7 @@ import Movies from '../Movies/Movies';
 
 function App() {
    const navigate = useNavigate();
-   const [loggedIn, setLoggedIn] = useState(true);
+   const [loggedIn, setLoggedIn] = useState(false);
 
    function onSignOut() {
       // localStorage.removeItem('token');
@@ -28,10 +28,12 @@ function App() {
          <Routes>
             <Route exact path="/" element={<Main loggedIn={loggedIn} />}
             />
-            <Route path="/signin" element={<Login />}
+            <Route path="/signin" element={loggedIn ? (<Navigate to="/movies" replace />) : (<Login />)}
             />
-            <Route path="/signup" element={<Register />}
+            <Route path="/signup" element={loggedIn ? (<Navigate to="/movies" replace />) : (<Register />)}
             />
+
+
             <Route path="/movies" element={<Movies loggedIn={loggedIn} />}
             />
             <Route path="/saved-movies" element={<SavedMovies loggedIn={loggedIn} />}

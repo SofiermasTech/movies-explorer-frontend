@@ -5,8 +5,16 @@ import './Login.css';
 import Logo from '../Logo/Logo';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
    const { values, errors, isValid, handleChange } = useFormAndValidation();
+
+   const handleSubmit = (evt) => {
+      evt.preventDefault();
+      if (!values.email || !values.password) {
+         return;
+      }
+      onLogin(values);
+   };
 
    return (
       <main>
@@ -14,7 +22,7 @@ const Login = () => {
             <div className="login__container">
                <Logo />
                <h1 className="login__title">Рады видеть!</h1>
-               <form className="login__form">
+               <form className="login__form" onSubmit={handleSubmit}>
                   <label className="login__label">E-mail</label>
                   <input className="login__input" type="email" name="email" required placeholder="E-mail"
                      value={values.email || ""}
@@ -26,7 +34,7 @@ const Login = () => {
                      value={values.password || ""}
                      onChange={handleChange} />
                   {!isValid && (<span className="login__error">{errors.password}</span>)}
-                  <button className="btn login__btn" type="submit">Войти</button>
+                  <button className="btn login__btn" type="submit" disabled={!isValid}>Войти</button>
                </form>
                <div className="login__container-link">
                   <span className="login__text">Ещё не зарегистрированы?</span>
