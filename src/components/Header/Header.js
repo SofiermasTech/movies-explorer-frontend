@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import './Header.css';
 import Logo from '../Logo/Logo';
@@ -17,18 +17,9 @@ const Header = ({ loggedIn }) => {
             || location === '/profile' ? (
             <header className={`header ${location === '/' ? "header_color" : ""}`}>
                <Logo />
-               {loggedIn ? (
-                  <Navigation loggedIn={loggedIn} />
-               ) : (
-                  <div className="navigation__btn-auth">
-                     <Link className="link navigation__btn-register" to="/signup">Регистрация</Link>
-                     <Link className="link navigation__btn-login" to="/signin">Войти</Link>
-                  </div>
-               )}
+               <Navigation loggedIn={loggedIn} />
             </header>
-         ) : (
-            ''
-         )}
+         ) : ('')}
       </>
    )
 

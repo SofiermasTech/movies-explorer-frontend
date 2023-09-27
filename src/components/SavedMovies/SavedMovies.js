@@ -1,35 +1,92 @@
+import React, { useState, useEffect } from 'react';
+
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-// import Header from '../Header/Header';
-// import Footer from '../Footer/Footer';
+import Preloader from '../Preloader/Preloader';
+import './SavedMovies.css';
 
-const moviesSaved = [
-   {
-      nameRU: 'Баския: Взрыв реальности',
-      image: 'https://img1.goodfon.ru/wallpaper/nbig/e/c0/nachalo-inception-aktery-stoyat.jpg',
-      duration: '1ч 17м',
-      movieId: '1bv1f',
-      save: true
-   },
-   {
-      nameRU: 'Баския: Взрыв реальности',
-      image: 'https://thenewbev.com/wp-content/uploads/2019/06/Hollywood-poster-header-1250x813.jpg',
-      duration: '1ч 17м',
-      movieId: '1bv1ffh',
-      save: true
-   },
-];
+import { filterMovies, filterShortMovies } from '../../utils/utils';
 
-const SavedMovies = () => {
+
+const SavedMovies = ({
+   savedMovies,
+   isLoading,
+   onDelete,
+   setPopupMessage,
+   setIsPopupOpen,
+}) => {
+   const [renderedMovies, setRenderedMovies] = useState(savedMovies);
+   const [errorMessage, setErrorMessage] = useState('');
+   const [isMovieFilter, setIsMovieFilter] = useState(false);
+   const [searchQuery, setSearchQuery] = useState('');
+   const [notFound, setNotFound] = useState(false);
+   const [searchedMovies, setSearchedMovies] = useState(renderedMovies);
+
+
+   useEffect(() => {
+      if (savedMovies.length === 0) {
+         setErrorMessage('Вы еще ничего не сохранили.')
+      } else {
+         setRenderedMovies(savedMovies);
+         setErrorMessage('');
+      }
+   }, [savedMovies])
+
+   function handleSearchSavedMovies(searchRequest) {
+      if (searchRequest.trim().length === 0) {
+         setPopupMessage('Нужно ввести ключевое слово.');
+         setIsPopupOpen(true);
+         return;
+      }
+
+      const moviesList = filterMovies(savedMovies, searchRequest, isMovieFilter);
+      setSearchQuery(searchRequest);
+      if (moviesList.length === 0) {
+         setNotFound(true);
+         setPopupMessage('Ничего не найдено.');
+         setIsPopupOpen(true);
+      } else {
+         setNotFound(false);
+         setSearchedMovies(moviesList);
+         setRenderedMovies(moviesList);
+      }
+   }
+
+   const handleShortSavedFilms = () => {
+      if (!isMovieFilter) {
+         setIsMovieFilter(true);
+         localStorage.setItem('shortSavedMovies', true);
+         setRenderedMovies(filterShortMovies(searchedMovies));
+         filterShortMovies(searchedMovies).length === 0 ? setNotFound(true) : setNotFound(false);
+      } else {
+         setIsMovieFilter(false);
+         localStorage.setItem('shortSavedMovies', false);
+         searchedMovies.length === 0 ? setNotFound(true) : setNotFound(false);
+         setRenderedMovies(searchedMovies);
+      }
+   }
+
    return (
-      <>
-         <main>
+      <main>
+         <SearchForm isSavedMoviesPage={true} isMovieFilter={isMovieFilter} onSearchMovies={handleSearchSavedMovies}
+            onFilter={handleShortSavedFilms} />
 
-            <SearchForm />
-            <MoviesCardList isSavedMoviesPage={true} movies={moviesSaved}/>
-
-         </main>
-      </>
+         {isLoading && (
+            <Preloader />
+         )}
+         {(errorMessage && !isLoading) && (
+            <p className="saved-movies__message">{errorMessage}</p>
+         )}
+         {(!isLoading && !errorMessage) && (
+            <MoviesCardList
+               isSavedMoviesPage={true}
+               movies={renderedMovies}
+               savedMovies={savedMovies}
+               onDelete={onDelete}
+               isLoading={isLoading}
+            />
+         )}
+      </main>
    )
 };
 

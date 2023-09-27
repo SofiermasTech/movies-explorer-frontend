@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 
 import './Navigation.css';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
@@ -11,9 +11,11 @@ const Navigation = ({ loggedIn }) => {
    const toggleBurgerMenu = () => {
       setIsBurgerMenuOpen(!isBurgerMenuOpen);
    }
+   
 
    return (
       <nav className="navigation">
+         
          {loggedIn ? (
             <>
                <div className="navigation__movies">
@@ -39,8 +41,11 @@ const Navigation = ({ loggedIn }) => {
                </div>
             </>
          ) : (
-            ''
-         )}
+            <div className="navigation__btn-auth">
+               <Link className="link navigation__btn-register" to="/signup">Регистрация</Link>
+               <Link className="link navigation__btn-login" to="/signin">Войти</Link>
+            </div>
+         ) }
 
          {!isBurgerMenuOpen && loggedIn ? (
             <button type="button" className='btn burger__btn' onClick={toggleBurgerMenu} />

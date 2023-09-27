@@ -26,7 +26,8 @@ const Register = ({ onRegister }) => {
                   {!isValid && (<span className="register-form__error">{errors.name}</span>)}
                   <label className="register-form__label">E-mail</label>
                   <input className="register-form__input" type="email" required placeholder="E-mail" name="email"
-                     value={values.email || ""} onChange={handleChange} />
+                     value={values.email || ""} onChange={handleChange}
+                     pattern={'^[a-zA-Z0-9+_.\\-]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]{2,}$'} />
                   {!isValid && (<span className="register-form__error">{errors.email}</span>)}
                   <label className="register-form__label">Пароль</label>
                   <input className="register-form__input" type="password" required placeholder="Пароль" minLength="8"
