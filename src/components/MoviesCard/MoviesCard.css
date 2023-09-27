@@ -12,13 +12,17 @@
    padding: 14px;
 }
 
+.card__link {
+   text-decoration: none;
+ }
+
 .card__image {
    display: block;
    cursor: pointer;
    object-fit: cover;
    object-position: center;
    width: 360px;
-   max-height: 201px;
+   height: 201px;
    border-radius: 6px;
 }
 
@@ -27,6 +31,7 @@
    font-size: 13px;
    font-weight: 500;
    line-height: 16px;
+   max-width: 70%;
 }
 
 .card__time {
@@ -62,8 +67,7 @@
    position: absolute;
    top: 14px;
    right: 14px;
-   opacity: 0;
-}
+   }
 
 .card:hover .card__btn {
    opacity: 1;
@@ -86,6 +90,10 @@
 .card:hover .card__btn-delete {
    visibility: visible;
 }
+
+.card__btn_hidden {
+   display: none;
+ }
 
 @media screen and (max-width: 880px) {
    .card {

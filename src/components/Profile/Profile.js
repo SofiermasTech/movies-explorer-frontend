@@ -1,10 +1,21 @@
+import React, { useEffect, useState, useContext } from 'react';
+
 import useFormAndValidation from '../../hooks/useFormAndValidation';
+import CurrentUserContext from '../../context/CurrentUserContext';
 import './Profile.css';
 
 
 
 const Profile = ({ onUpdateUser, onLogOut }) => {
-   const { values, handleChange } = useFormAndValidation();
+   const { values, handleChange, isValid, resetForm, errors } = useFormAndValidation();
+   const [isEditProfile, setIsEditProfile] = useState(false);
+   const currentUser = useContext(CurrentUserContext);
+
+
+   function handleEditProfile(evt) {
+      evt.preventDefault();
+      setIsEditProfile(true);
+   }
 
    const handleSubmit = (evt) => {
       evt.preventDefault();
@@ -15,35 +26,41 @@ const Profile = ({ onUpdateUser, onLogOut }) => {
       });
    };
 
+   useEffect(() => {
+      currentUser ? resetForm(currentUser) : resetForm();
+   }, [currentUser, resetForm]);
+
+   const isValueSameAsWas = (!isValid || (currentUser.name === values.name && currentUser.email === values.email));
+
    return (
       <main className="profile">
-
          <div className="profile__container">
-
-            <h1 className="profile__title">Привет, София!</h1>
+            <h1 className="profile__title">Привет, {currentUser.name || "User"}!</h1>
             <form className="profile__form" onSubmit={handleSubmit}>
                <div className="profile__container-name">
                   <label className="profile__label">Имя</label>
                   <input className="profile__input" type="text" name="name" placeholder="Имя" required minLength="2"
                      maxLength="30" value={values.name || ""} onChange={handleChange} />
                </div>
+               {!isValid && (<span className="profile__input-error">{errors.name}</span>)}
                <div className="profile__container-email">
                   <label className="profile__label">E-mail</label>
                   <input className="profile__input" name="email" type="email" placeholder="E-mail"
-                     required value={values.email || ""} onChange={handleChange} />
+                     required value={values.email || ""} onChange={handleChange} 
+                     pattern={'^[a-zA-Z0-9+_.\\-]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]{2,}$'} />
                </div>
-               <div className="profile__container-btn-save">
-                  <button className="btn profile__btn-save" type="submit">Сохранить</button>
-               </div>
-               <div className="profile__container-btn">
-                  <button className="btn profile__btn-edit" type="button">Редактировать</button>
-                  <button className="btn profile__btn-out" type="button" onClick={onLogOut} >Выйти из аккаунта</button>
-               </div>
+               {!isValid && (<span className="profile__input-error">{errors.email}</span>)}
+               {isEditProfile ?
+                  (<div className="profile__container-btn-save">
+                     <button className="btn profile__btn-save" type="submit" disabled={isValueSameAsWas}>Сохранить</button>
+                  </div>) :
+                  (<div className="profile__container-btn">
+                     <button className="btn profile__btn-edit" type="button" onClick={handleEditProfile}>Редактировать</button>
+                     <button className="btn profile__btn-out" type="button" onClick={onLogOut} >Выйти из аккаунта</button>
+                  </div>)
+               }
             </form>
-
          </div>
-
-
       </main>
    )
 };
