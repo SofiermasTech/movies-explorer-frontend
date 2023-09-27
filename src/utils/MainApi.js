@@ -1,7 +1,8 @@
-const BASE_API_URL = 'http://localhost:3000';
-//'https://api.volserma-movies.nomoredomainsicu.ru';
+//const BASE_API_URL = 'https://api.volserma-movies.nomoredomainsicu.ru';
+//'http://localhost:3000';
 
-const URL_MOVIE = "https://api.nomoreparties.co";
+import { URL_MOVIE, BASE_API_URL } from './constant';
+
 
 const headers = {
    Accept: 'application/json',

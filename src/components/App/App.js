@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 
-// import moviesApi from '../../utils/MoviesApi';
 import * as mainApi from '../../utils/MainApi';
-
 import CurrentUserContext from '../../context/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
@@ -18,6 +16,8 @@ import Profile from '../Profile/Profile';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import Movies from '../Movies/Movies';
 
+import { ERROR_TEXT_REGISTER, ERROR_TEXT_LOGIN } from '../../utils/constant';
+
 
 function App() {
    const navigate = useNavigate();
@@ -26,10 +26,9 @@ function App() {
    const [currentUser, setCurrentUser] = useState({});
    const [isLoading, setIsLoading] = useState(false);
 
-   // const [movies, setMovies] = useState([]);
    const [savedMovies, setSavedMovies] = useState([]);
    const [searchedMovies, setSearchedMovies] = useState([]);
-   
+
    const [isPopupOpen, setIsPopupOpen] = useState(false);
    const [popupMessage, setPopupMessage] = useState('');
 
@@ -47,7 +46,6 @@ function App() {
             .catch((err) => { console.log(`Возникла ошибка, ${err}`) })
             .finally(() => setIsLoading(false));
       }
-      console.log(token);
    }
 
    useEffect(() => {
@@ -55,6 +53,8 @@ function App() {
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, []);
 
+
+   /*------------------SAVE & DELETED MOVIES------------------------ */
 
    const handleSaveMovie = ({ country, director, duration, year, description, image, trailerLink, id, nameRU, nameEN, }) => {
       mainApi
@@ -70,7 +70,6 @@ function App() {
             console.log(`Ошибка: ${error}`);
          })
    }
-
 
    const handleDeleteMovie = (movie) => {
       const film = savedMovies.find(({ movieId }) => movieId === movie.id);
@@ -93,47 +92,8 @@ function App() {
       }
    };
 
-   /*
-      const searchMovies = (searchRequest, isMovieFilter) => {
-         if (searchRequest.trim().length === 0) {
-            setPopupMessage('Нужно ввести ключевое слово');
-            setIsPopupOpen(true);
-            return;
-         }
-   
-         localStorage.setItem('searchRequest', searchRequest);
-         localStorage.setItem('filter', isMovieFilter);
-   
-         if (movies.length === 0) {
-            setIsLoading(true);
-            moviesApi
-               .getMovies()
-               .then((data) => {
-                  setMovies(data);
-                  const filteredMovies = search(movies, isMovieFilter, searchRequest);
-                  localStorage.setItem('searchedMovies', JSON.stringify(filteredMovies));
-   
-                  setSearchedMovies(filteredMovies);
-               })
-               .catch(error => {
-                  setPopupMessage(error);
-                  setIsPopupOpen(true);
-               })
-               .finally(() => {
-                  setIsLoading(false);
-               })
-         } else {
-            const filteredMovies = search(movies, isMovieFilter, searchRequest);
-            localStorage.setItem('searchRequest', searchRequest);
-            localStorage.setItem('searchedMovies', JSON.stringify(filteredMovies));
-            localStorage.setItem('filter', isMovieFilter);
-            setSearchedMovies(filteredMovies);
-            setIsLoading(false);
-         }
-      }
-   */
 
-   /*------------------------------------------ */
+   /*-----------------POPUP------------------------- */
 
    const handleClosePopup = () => {
       setIsPopupOpen(false);
@@ -141,7 +101,7 @@ function App() {
    };
 
 
-   /*------------------------------------------ */
+   /*------------------REGISTER & LOGIN------------------------ */
 
    const handleRegistration = ({ name, email, password }) => {
       return mainApi
@@ -151,7 +111,7 @@ function App() {
          })
          .catch((err) => {
             console.log(err);
-            setPopupMessage('При регистрации пользователя произошла ошибка.');
+            setPopupMessage(ERROR_TEXT_REGISTER);
             setIsPopupOpen(true);
          });
    };
@@ -169,11 +129,13 @@ function App() {
          })
          .catch((err) => {
             console.log(err);
-            setPopupMessage('При авторизации произошла ошибка.');
+            setPopupMessage(ERROR_TEXT_LOGIN);
             setIsPopupOpen(true);
          })
    }
 
+
+   /*------------------USERS DATA------------------------ */
 
    const handleUpdateUser = (newUserInfo) => {
       setIsLoading(true);
@@ -184,7 +146,7 @@ function App() {
             setPopupMessage('Данные успешно изменены!');
             setIsPopupOpen(true);
          })
-         .catch((error) => {
+         .catch(() => {
             setPopupMessage('При обновлении профиля произошла ошибка.');
             setIsPopupOpen(true);
          })
@@ -207,6 +169,8 @@ function App() {
       }
    }, [loggedIn]);
 
+
+   /*------------------LOG OUT------------------------ */
 
    function onSignOut() {
       localStorage.clear();

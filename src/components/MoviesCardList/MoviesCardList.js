@@ -4,6 +4,14 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import useScreenResize from '../../hooks/useScreenResize';
 import { checkSavedCard } from '../../utils/utils';
+import {
+   BIG_SCREEN_WIDTH,
+   SMALL_SCREEN_WIDTH,
+   CARDS_MOVIES_BIG,
+   CARDS_MOVIES_MIDDLE,
+   CARDS_MOVIES_SMALL,
+} from '../../utils/constant';
+
 
 const MoviesCardList = ({
    isSavedMoviesPage,
@@ -17,7 +25,7 @@ const MoviesCardList = ({
    const searchedMoviesCount = movies ? movies.length : 0;
 
    const handleMoreClick = () => {
-      if (screenWidth > 910) {
+      if (screenWidth > BIG_SCREEN_WIDTH) {
          setShowMovieList(movies.slice(0, showMovieList.length + 3))
       } else {
          setShowMovieList(movies.slice(0, showMovieList.length + 2))
@@ -25,12 +33,12 @@ const MoviesCardList = ({
    }
 
    useEffect(() => {
-      if (screenWidth > 910) {
-         setShowMovieList(movies.slice(0, 12))
-      } else if (screenWidth > 500 && screenWidth <= 910) {
-         setShowMovieList(movies.slice(0, 8));
-      } else if (screenWidth <= 500) {
-         setShowMovieList(movies.slice(0, 5));
+      if (screenWidth > BIG_SCREEN_WIDTH) {
+         setShowMovieList(movies.slice(0, CARDS_MOVIES_BIG,))
+      } else if (screenWidth > SMALL_SCREEN_WIDTH && screenWidth <= BIG_SCREEN_WIDTH) {
+         setShowMovieList(movies.slice(0, CARDS_MOVIES_MIDDLE));
+      } else if (screenWidth <= SMALL_SCREEN_WIDTH) {
+         setShowMovieList(movies.slice(0, CARDS_MOVIES_SMALL));
       } else {
          setShowMovieList(movies);
       }
@@ -53,10 +61,7 @@ const MoviesCardList = ({
          </ul>
          <div className="movies__btn-container">
             {!isSavedMoviesPage && showMovieList && searchedMoviesCount !== showMovieList.length && (
-               <button
-                  className="btn movies__btn-else"
-                  onClick={handleMoreClick}
-               >
+               <button className="btn movies__btn-else" onClick={handleMoreClick}               >
                   Ещё
                </button>
             )}

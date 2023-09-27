@@ -6,7 +6,9 @@ import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
+
 import { filterMovies, filterShortMovies } from '../../utils/utils';
+import { ERROR_TEXT_NOTFOUND, ERROR_TEXT_KEY_WORD } from '../../utils/constant';
 
 const Movies = ({
    isLoading,
@@ -25,6 +27,15 @@ const Movies = ({
 
    const [notFound, setNotFound] = useState(false);
    const [initialMovies, setInitialMovies] = useState([]);
+
+   useEffect(() => {
+      if (searchedMovies.length === 0) {
+         setErrorMessage('Вы еще ничего не искали.')
+      } else {
+         setSearchedMovies(searchedMovies);
+         setErrorMessage('');
+      }
+   }, [searchedMovies])
 
    useEffect(() => {
       if (localStorage.getItem('movies')) {
@@ -48,7 +59,7 @@ const Movies = ({
       const moviesList = filterMovies(movies, userQuery, false);
       if (moviesList.length === 0) {
          setNotFound(true);
-         setPopupMessage('Ничего не найдено.');
+         setPopupMessage(ERROR_TEXT_NOTFOUND);
          setIsPopupOpen(true);
       } else {
          setNotFound(false);
@@ -63,7 +74,7 @@ const Movies = ({
 
    const searchMovies = (searchRequest) => {
       if (searchRequest.trim().length === 0) {
-         setPopupMessage('Нужно ввести ключевое слово.');
+         setPopupMessage(ERROR_TEXT_KEY_WORD);
          setIsPopupOpen(true);
          return;
       }
@@ -119,7 +130,7 @@ const Movies = ({
             )}
             {(!isLoading && !errorMessage) && (
                <MoviesCardList
-                  isLoading={isLoading}
+                  
                   isSavedMoviesPage={false}
                   movies={searchedMovies}
                   savedMovies={savedMovies}

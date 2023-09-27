@@ -6,6 +6,7 @@ import Preloader from '../Preloader/Preloader';
 import './SavedMovies.css';
 
 import { filterMovies, filterShortMovies } from '../../utils/utils';
+import { ERROR_TEXT_NOTFOUND, ERROR_TEXT_NOT_SAVE, ERROR_TEXT_KEY_WORD } from '../../utils/constant';
 
 
 const SavedMovies = ({
@@ -25,25 +26,25 @@ const SavedMovies = ({
 
    useEffect(() => {
       if (savedMovies.length === 0) {
-         setErrorMessage('Вы еще ничего не сохранили.')
+         setErrorMessage(ERROR_TEXT_NOT_SAVE)
       } else {
          setRenderedMovies(savedMovies);
          setErrorMessage('');
       }
    }, [savedMovies])
 
+
    function handleSearchSavedMovies(searchRequest) {
       if (searchRequest.trim().length === 0) {
-         setPopupMessage('Нужно ввести ключевое слово.');
+         setPopupMessage(ERROR_TEXT_KEY_WORD);
          setIsPopupOpen(true);
          return;
       }
-
       const moviesList = filterMovies(savedMovies, searchRequest, isMovieFilter);
       setSearchQuery(searchRequest);
       if (moviesList.length === 0) {
          setNotFound(true);
-         setPopupMessage('Ничего не найдено.');
+         setPopupMessage(ERROR_TEXT_NOTFOUND);
          setIsPopupOpen(true);
       } else {
          setNotFound(false);
@@ -52,6 +53,7 @@ const SavedMovies = ({
       }
    }
 
+   
    const handleShortSavedFilms = () => {
       if (!isMovieFilter) {
          setIsMovieFilter(true);
@@ -83,7 +85,7 @@ const SavedMovies = ({
                movies={renderedMovies}
                savedMovies={savedMovies}
                onDelete={onDelete}
-               isLoading={isLoading}
+               
             />
          )}
       </main>

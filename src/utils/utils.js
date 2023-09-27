@@ -1,6 +1,8 @@
+import { SHORT_FILM_TIME, HOUR } from './constant';
+
 export const convertMinToHours = (num) => {
-   const minutes = num % 60;
-   const hours = (num - minutes) / 60;
+   const minutes = num % HOUR;
+   const hours = (num - minutes) / HOUR;
    if (hours === 0) {
      return `${minutes}м`;
    } else if (minutes === 0) {
@@ -11,10 +13,10 @@ export const convertMinToHours = (num) => {
  };
 
  export function filterShortMovies(movies) {
-   return movies.filter(movie => movie.duration < 40);
+   return movies.filter(movie => movie.duration < SHORT_FILM_TIME);
  };
  
- 
+
  export function filterMovies(movies, userQuery, moviesCheckbox) {
    const moviesByUserQuery = movies.filter((movie) => {
      const movieRu = String(movie.nameRU).toLowerCase().trim();
