@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import moviesApi from '../../utils/MoviesApi';
 
 import './Movies.css';
@@ -19,14 +20,14 @@ const Movies = ({
    setPopupMessage,
    setIsPopupOpen,
 }) => {
+   const location = useLocation().pathname;
    const [movies, setMovies] = useState([]);
-
    const [errorMessage, setErrorMessage] = useState('');
    const [isMovieFilter, setIsMovieFilter] = useState(false);
    const [searchedMovies, setSearchedMovies] = useState([]);
-
+   // eslint-disable-next-line no-unused-vars
    const [notFound, setNotFound] = useState(false);
-   const [initialMovies, setInitialMovies] = useState([]);
+
 
    useEffect(() => {
       if (searchedMovies.length === 0) {
@@ -42,7 +43,7 @@ const Movies = ({
          const movies = JSON.parse(
             localStorage.getItem('movies')
          );
-         setInitialMovies(movies);
+         setSearchedMovies(movies);
          if (
             localStorage.getItem('shortMovies') === 'true'
          ) {
@@ -51,9 +52,15 @@ const Movies = ({
             setSearchedMovies(movies);
          }
       }
-   }, []);
+   }, [location]);
 
-
+   useEffect(() => {
+      if (localStorage.getItem('shortMovies') === 'true') {
+         setIsMovieFilter(true);
+      } else {
+         setIsMovieFilter(false);
+      }
+   }, [location]);
 
    const handleFilteredMovies = (movies, userQuery, moviesCheckbox) => {
       const moviesList = filterMovies(movies, userQuery, false);
@@ -64,7 +71,7 @@ const Movies = ({
       } else {
          setNotFound(false);
       }
-      setInitialMovies(moviesList);
+      setSearchedMovies(moviesList);
       setSearchedMovies(
          moviesCheckbox ? filterShortMovies(moviesList) : moviesList
       );
@@ -107,12 +114,12 @@ const Movies = ({
    const handleShortFilms = () => {
       setIsMovieFilter(!isMovieFilter);
       if (!isMovieFilter) {
-         setSearchedMovies(filterShortMovies(initialMovies));
+         setSearchedMovies(filterShortMovies(searchedMovies));
          if (filterMovies.length === 0) {
             setNotFound(true);
          }
       } else {
-         setSearchedMovies(initialMovies);
+         setSearchedMovies(searchedMovies);
       }
       localStorage.setItem('shortMovies', !isMovieFilter);
    }
@@ -130,7 +137,7 @@ const Movies = ({
             )}
             {(!isLoading && !errorMessage) && (
                <MoviesCardList
-                  
+
                   isSavedMoviesPage={false}
                   movies={searchedMovies}
                   savedMovies={savedMovies}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { useLocation } from 'react-router-dom';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
@@ -16,10 +16,12 @@ const SavedMovies = ({
    setPopupMessage,
    setIsPopupOpen,
 }) => {
+   const location = useLocation().pathname;
    const [renderedMovies, setRenderedMovies] = useState(savedMovies);
    const [errorMessage, setErrorMessage] = useState('');
    const [isMovieFilter, setIsMovieFilter] = useState(false);
    const [searchQuery, setSearchQuery] = useState('');
+   // eslint-disable-next-line no-unused-vars
    const [notFound, setNotFound] = useState(false);
    const [searchedMovies, setSearchedMovies] = useState(renderedMovies);
 
@@ -35,7 +37,7 @@ const SavedMovies = ({
 
 
    function handleSearchSavedMovies(searchRequest) {
-      if (searchRequest.trim().length === 0) {
+      if ((searchRequest || '').trim().length === 0) {
          setPopupMessage(ERROR_TEXT_KEY_WORD);
          setIsPopupOpen(true);
          return;
@@ -53,7 +55,6 @@ const SavedMovies = ({
       }
    }
 
-   
    const handleShortSavedFilms = () => {
       if (!isMovieFilter) {
          setIsMovieFilter(true);
@@ -67,6 +68,23 @@ const SavedMovies = ({
          setRenderedMovies(searchedMovies);
       }
    }
+
+   useEffect(() => {
+      if (localStorage.getItem('shortSavedMovies') === 'true') {
+         setIsMovieFilter(true);
+         setRenderedMovies(filterShortMovies(savedMovies));
+      } else {
+         setIsMovieFilter(false);
+         const moviesList = filterMovies(savedMovies, searchQuery, isMovieFilter);
+         setRenderedMovies(moviesList);
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [savedMovies, location, isMovieFilter]);
+
+   useEffect(() => {
+      setSearchedMovies(savedMovies);
+      savedMovies.length !== 0 ? setNotFound(false) : setNotFound(true);
+   }, [savedMovies]);
 
    return (
       <main>
@@ -85,7 +103,6 @@ const SavedMovies = ({
                movies={renderedMovies}
                savedMovies={savedMovies}
                onDelete={onDelete}
-               
             />
          )}
       </main>
