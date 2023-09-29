@@ -2,7 +2,6 @@ import { useLocation } from 'react-router-dom';
 
 import './Footer.css';
 
-
 const Footer = () => {
    const location = useLocation().pathname;
 

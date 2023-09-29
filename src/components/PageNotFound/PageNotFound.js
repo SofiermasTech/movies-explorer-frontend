@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
+
 import './PageNotFound.css';
 
 const PageNotFound = () => {
    const navigate = useNavigate();
-   
+
    const backOnclick = () => navigate(-3);
 
-   
    return (
       <main className="not-found">
          <div className="not-found__container">

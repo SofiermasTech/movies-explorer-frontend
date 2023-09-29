@@ -11,13 +11,19 @@ const BurgerMenu = ({ onClose }) => {
             <div className="burger__container">
                <button type="button" className="btn burger__close-btn" onClick={() => onClose()} />
                <div className="burger__list">
-                  <NavLink to="/" className={`link burger__link ${location === '/' ? "burger__link_active" : ""}`}>
+                  <NavLink
+                     to="/"
+                     className={`link burger__link ${location === '/' ? "burger__link_active" : ""}`}>
                      Главная
                   </NavLink>
-                  <NavLink to="/movies" className={`link burger__link ${location === '/movies' ? "burger__link_active" : ""}`}>
+                  <NavLink
+                     to="/movies"
+                     className={`link burger__link ${location === '/movies' ? "burger__link_active" : ""}`}>
                      Фильмы
                   </NavLink>
-                  <NavLink to="/saved-movies" className={`link burger__link ${location === '/saved-movies' ? "burger__link_active" : ""}`}>
+                  <NavLink
+                     to="/saved-movies"
+                     className={`link burger__link ${location === '/saved-movies' ? "burger__link_active" : ""}`}>
                      Сохранённые фильмы
                   </NavLink>
                </div>

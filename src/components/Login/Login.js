@@ -24,15 +24,28 @@ const Login = ({ onLogin }) => {
                <h1 className="login__title">Рады видеть!</h1>
                <form className="login__form" onSubmit={handleSubmit}>
                   <label className="login__label">E-mail</label>
-                  <input className="login__input" type="email" name="email" required placeholder="E-mail"
+                  <input
+                     className="login__input"
+                     type="email"
+                     name="email"
+                     required
+                     placeholder="E-mail"
                      value={values.email || ""}
-                     onChange={handleChange} />
+                     onChange={handleChange}
+                  />
                   {!isValid && (<span className="login__error">{errors.email}</span>)}
                   <label className="login__label">Пароль</label>
-                  <input className="login__input" type="password" name="password" required placeholder="Пароль"
+                  <input
+                     className="login__input"
+                     type="password"
+                     name="password"
+                     required
+                     placeholder="Пароль"
                      minLength="8"
                      value={values.password || ""}
-                     onChange={handleChange} />
+                     onChange={handleChange}
+                     autoComplete="off"
+                  />
                   {!isValid && (<span className="login__error">{errors.password}</span>)}
                   <button className="btn login__btn" type="submit" disabled={!isValid}>Войти</button>
                </form>

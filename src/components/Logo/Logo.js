@@ -1,5 +1,6 @@
-import './Logo.css';
 import { Link } from 'react-router-dom';
+
+import './Logo.css';
 import logo from '../../images/logo.svg';
 
 function Logo() {

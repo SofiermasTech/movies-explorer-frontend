@@ -34,11 +34,6 @@
    padding: 20px 0 19px;
 }
 
-/*
-.portfolio__item:first-child {
-   padding-top: 0;
-}
-*/
 .portfolio__item:last-child {
    border-bottom: none;
 }
@@ -55,7 +50,6 @@
    .portfolio__item {
       padding: 20px 0 21px;
    }
-
 }
 
 @media screen and (max-width: 500px) {

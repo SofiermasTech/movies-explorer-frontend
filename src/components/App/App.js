@@ -5,7 +5,6 @@ import * as mainApi from '../../utils/MainApi';
 import CurrentUserContext from '../../context/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
-
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -18,19 +17,14 @@ import Movies from '../Movies/Movies';
 
 import { ERROR_TEXT_REGISTER, ERROR_TEXT_LOGIN } from '../../utils/constant';
 
-
 function App() {
    const navigate = useNavigate();
    const location = useLocation().pathname;
-
    const [loggedIn, setLoggedIn] = useState(false);
    const [currentUser, setCurrentUser] = useState({});
    const [isLoading, setIsLoading] = useState(false);
-
    const [savedMovies, setSavedMovies] = useState([]);
    // eslint-disable-next-line no-unused-vars
-   const [searchedMovies, setSearchedMovies] = useState([]);
-
    const [isPopupOpen, setIsPopupOpen] = useState(false);
    const [popupMessage, setPopupMessage] = useState('');
 
@@ -41,7 +35,6 @@ function App() {
 
    function handleTokenCheck() {
       const token = localStorage.getItem('token');
-      // setIsLoading(true);
       if (token) {
          mainApi
             .getContent(token)
@@ -61,16 +54,32 @@ function App() {
    }
 
 
-
-
-
-
    /*------------------SAVE & DELETED MOVIES------------------------ */
 
-   const handleSaveMovie = ({ country, director, duration, year, description, image, trailerLink, id, nameRU, nameEN, }) => {
+   const handleSaveMovie = ({
+      country,
+      director,
+      duration,
+      year,
+      description,
+      image,
+      trailerLink,
+      id,
+      nameRU,
+      nameEN,
+   }) => {
       mainApi
          .saveMovie({
-            country, director, duration, year, description, image, trailerLink, id, nameRU, nameEN,
+            country,
+            director,
+            duration,
+            year,
+            description,
+            image,
+            trailerLink,
+            id,
+            nameRU,
+            nameEN,
          })
          .then((newSavedMovie) => {
             setSavedMovies([newSavedMovie, ...savedMovies]);
@@ -133,7 +142,6 @@ function App() {
          });
    };
 
-
    function handleLogin({ email, password }) {
       return mainApi
          .authorize({ email, password })
@@ -142,7 +150,6 @@ function App() {
                setLoggedIn(true);
                localStorage.setItem('token', data.token);
                navigate('/movies');
-
                Promise.all([mainApi.getContent(), mainApi.getSavedMovies()])
                   .then(([userData, userMovies]) => {
                      setCurrentUser(userData);
@@ -163,21 +170,7 @@ function App() {
          })
    }
 
-   /*
-   useEffect(() => {
-      if (loggedIn) {
-         Promise.all([mainApi.getContent(), mainApi.getSavedMovies()])
-            .then(([userData, userMovies]) => {
-               setCurrentUser(userData);
-               localStorage.setItem('savedMovies', JSON.stringify(userMovies));
-               setSavedMovies(userMovies);
-            })
-            .catch((err) => {
-               console.log(`Ошибка: ${err}`);
-            });
-      }
-   }, [loggedIn]);
-*/
+
    /*------------------USERS DATA------------------------ */
 
    const handleUpdateUser = (newUserInfo) => {
@@ -199,7 +192,6 @@ function App() {
    };
 
 
-
    /*------------------LOG OUT------------------------ */
 
    function onSignOut() {
@@ -209,7 +201,6 @@ function App() {
       setPopupMessage('');
       setSavedMovies([]);
       navigate('/');
-
    }
 
    return (
@@ -231,7 +222,6 @@ function App() {
                   <ProtectedRoute
                      element={Movies}
                      loggedIn={loggedIn}
-                   
                      savedMovies={savedMovies}
                      onLoading={setIsLoading}
                      isLoading={isLoading}
@@ -247,7 +237,6 @@ function App() {
                      element={SavedMovies}
                      loggedIn={loggedIn}
                      savedMovies={savedMovies}
-
                      isLoading={isLoading}
                      onDelete={handleDeleteMovie}
                      setPopupMessage={setPopupMessage}

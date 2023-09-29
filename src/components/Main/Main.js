@@ -7,7 +7,6 @@ import Portfolio from '../Portfolio/Portfolio';
 
 const Main = () => {
    return (
-
       <main>
          <Promo />
          <NavTab />
@@ -16,7 +15,6 @@ const Main = () => {
          <AboutMe />
          <Portfolio />
       </main>
-
    )
 };
 

@@ -1,16 +1,14 @@
 import React, { useEffect, useState, useContext } from 'react';
 
+import './Profile.css';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 import CurrentUserContext from '../../context/CurrentUserContext';
-import './Profile.css';
-
-
 
 const Profile = ({ onUpdateUser, onLogOut }) => {
    const { values, handleChange, isValid, resetForm, errors } = useFormAndValidation();
    const [isEditProfile, setIsEditProfile] = useState(false);
    const currentUser = useContext(CurrentUserContext);
-
+   const isValueSameAsWas = (!isValid || (currentUser.name === values.name && currentUser.email === values.email));
 
    function handleEditProfile(evt) {
       evt.preventDefault();
@@ -30,8 +28,6 @@ const Profile = ({ onUpdateUser, onLogOut }) => {
       currentUser ? resetForm(currentUser) : resetForm();
    }, [currentUser, resetForm]);
 
-   const isValueSameAsWas = (!isValid || (currentUser.name === values.name && currentUser.email === values.email));
-
    return (
       <main className="profile">
          <div className="profile__container">
@@ -39,15 +35,32 @@ const Profile = ({ onUpdateUser, onLogOut }) => {
             <form className="profile__form" onSubmit={handleSubmit}>
                <div className="profile__container-name">
                   <label className="profile__label">Имя</label>
-                  <input className="profile__input" type="text" name="name" placeholder="Имя" required minLength="2"
-                     maxLength="30" value={values.name || ""} onChange={handleChange} />
+                  <input
+                     className="profile__input"
+                     type="text"
+                     name="name"
+                     placeholder="Имя"
+                     required
+                     minLength="2"
+                     maxLength="30"
+                     value={values.name || ""}
+                     onChange={handleChange}
+                     autoComplete="off"
+                  />
                </div>
                {!isValid && (<span className="profile__input-error">{errors.name}</span>)}
                <div className="profile__container-email">
                   <label className="profile__label">E-mail</label>
-                  <input className="profile__input" name="email" type="email" placeholder="E-mail"
-                     required value={values.email || ""} onChange={handleChange} 
-                     pattern={'^[a-zA-Z0-9+_.\\-]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]{2,}$'} />
+                  <input
+                     className="profile__input"
+                     name="email"
+                     type="email"
+                     placeholder="E-mail"
+                     required
+                     value={values.email || ""}
+                     onChange={handleChange}
+                     pattern={'^[a-zA-Z0-9+_.\\-]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]{2,}$'}
+                  />
                </div>
                {!isValid && (<span className="profile__input-error">{errors.email}</span>)}
                {isEditProfile ?

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+
+import './SavedMovies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
-import './SavedMovies.css';
-
 import { filterMovies, filterShortMovies } from '../../utils/utils';
 import { ERROR_TEXT_NOTFOUND, ERROR_TEXT_NOT_SAVE, ERROR_TEXT_KEY_WORD } from '../../utils/constant';
-
 
 const SavedMovies = ({
    savedMovies,
@@ -25,7 +24,6 @@ const SavedMovies = ({
    const [notFound, setNotFound] = useState(false);
    const [searchedMovies, setSearchedMovies] = useState(renderedMovies);
 
-
    useEffect(() => {
       if (savedMovies.length === 0) {
          setErrorMessage(ERROR_TEXT_NOT_SAVE)
@@ -34,7 +32,6 @@ const SavedMovies = ({
          setErrorMessage('');
       }
    }, [savedMovies])
-
 
    function handleSearchSavedMovies(searchRequest) {
       if ((searchRequest || '').trim().length === 0) {
@@ -88,8 +85,12 @@ const SavedMovies = ({
 
    return (
       <main>
-         <SearchForm isSavedMoviesPage={true} isMovieFilter={isMovieFilter} onSearchMovies={handleSearchSavedMovies}
-            onFilter={handleShortSavedFilms} />
+         <SearchForm
+            isSavedMoviesPage={true}
+            isMovieFilter={isMovieFilter}
+            onSearchMovies={handleSearchSavedMovies}
+            onFilter={handleShortSavedFilms}
+         />
 
          {isLoading && (
             <Preloader />
