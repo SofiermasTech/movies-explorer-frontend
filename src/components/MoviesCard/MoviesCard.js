@@ -1,7 +1,8 @@
 import React from 'react';
-import { convertMinToHours } from '../../utils/utils';
 
 import './MoviesCard.css';
+import { convertMinToHours } from '../../utils/utils';
+import { URL_MOVIE } from '../../utils/constant';
 
 const MoviesCard = ({
    isSavedMoviesPage,
@@ -23,10 +24,7 @@ const MoviesCard = ({
       <li className="card">
          <a href={movie.trailerLink} className="card__link" target="_blank" rel="noreferrer">
             <img
-               src={isSavedMoviesPage ?
-                  movie.image :
-                  `https://api.nomoreparties.co/${movie.image.url}`
-               }
+               src={isSavedMoviesPage ? movie.image : `${URL_MOVIE}${movie.image.url}`}
                alt={movie.nameRU}
                className="card__image"
             />

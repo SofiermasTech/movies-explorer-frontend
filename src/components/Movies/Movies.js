@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import moviesApi from '../../utils/MoviesApi';
 
 import './Movies.css';
-
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
-
+import moviesApi from '../../utils/MoviesApi';
 import { filterMovies, filterShortMovies } from '../../utils/utils';
 import { ERROR_TEXT_NOTFOUND, ERROR_TEXT_KEY_WORD } from '../../utils/constant';
 
@@ -27,7 +25,6 @@ const Movies = ({
    const [searchedMovies, setSearchedMovies] = useState([]);
    // eslint-disable-next-line no-unused-vars
    const [notFound, setNotFound] = useState(false);
-
 
    useEffect(() => {
       if (searchedMovies.length === 0) {
@@ -78,7 +75,6 @@ const Movies = ({
       localStorage.setItem('movies', JSON.stringify(moviesList));
    }
 
-
    const searchMovies = (searchRequest) => {
       if (searchRequest.trim().length === 0) {
          setPopupMessage(ERROR_TEXT_KEY_WORD);
@@ -110,7 +106,6 @@ const Movies = ({
       }
    }
 
-
    const handleShortFilms = () => {
       setIsMovieFilter(!isMovieFilter);
       if (!isMovieFilter) {
@@ -124,11 +119,14 @@ const Movies = ({
       localStorage.setItem('shortMovies', !isMovieFilter);
    }
 
-
    return (
       <main>
          <section className="movies__page">
-            <SearchForm isMovieFilter={isMovieFilter} onSearchMovies={searchMovies} onFilter={handleShortFilms} />
+            <SearchForm
+               isMovieFilter={isMovieFilter}
+               onSearchMovies={searchMovies}
+               onFilter={handleShortFilms}
+            />
             {isLoading && (
                <Preloader />
             )}
@@ -137,7 +135,6 @@ const Movies = ({
             )}
             {(!isLoading && !errorMessage) && (
                <MoviesCardList
-
                   isSavedMoviesPage={false}
                   movies={searchedMovies}
                   savedMovies={savedMovies}

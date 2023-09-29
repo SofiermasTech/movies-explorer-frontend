@@ -8,7 +8,6 @@
    opacity: .6;
 }
 
-
 @media screen and (max-width: 500px) {
    .logo {
       align-self: center;

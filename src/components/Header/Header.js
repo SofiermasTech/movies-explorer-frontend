@@ -5,7 +5,6 @@ import './Header.css';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
 
-
 const Header = ({ loggedIn }) => {
    const location = useLocation().pathname;
 
@@ -22,7 +21,6 @@ const Header = ({ loggedIn }) => {
          ) : ('')}
       </>
    )
-
 };
 
 export default Header;

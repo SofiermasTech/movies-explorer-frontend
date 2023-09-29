@@ -16,7 +16,6 @@ export const convertMinToHours = (num) => {
    return movies.filter(movie => movie.duration < SHORT_FILM_TIME);
  };
  
-
  export function filterMovies(movies, userQuery, moviesCheckbox) {
    const moviesByUserQuery = movies.filter((movie) => {
      const movieRu = String(movie.nameRU).toLowerCase().trim();
@@ -24,15 +23,13 @@ export const convertMinToHours = (num) => {
      const userMovie = userQuery.toLowerCase().trim();
      return movieRu.indexOf(userMovie) !== -1 || movieEn.indexOf(userMovie) !== -1;
    });
- 
-   if (moviesCheckbox) {
+    if (moviesCheckbox) {
      return filterShortMovies(moviesByUserQuery);
    } else {
      return moviesByUserQuery;
    }
  };
  
-
  export const checkSavedCard = (moviesList, movie) => {
    return moviesList.find((item) => {
      return item.movieId === (movie.id || movie.movieId);

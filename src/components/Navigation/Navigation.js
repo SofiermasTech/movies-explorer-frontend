@@ -11,17 +11,16 @@ const Navigation = ({ loggedIn }) => {
    const toggleBurgerMenu = () => {
       setIsBurgerMenuOpen(!isBurgerMenuOpen);
    }
-   
 
    return (
       <nav className="navigation">
-         
          {loggedIn ? (
             <>
                <div className="navigation__movies">
                   <ul className="navigation__list">
                      <li className="navigation__item">
-                        <NavLink className={location === "/movies" ? "link navigation__link navigation__link_active" : "link navigation__link"} to="/movies">
+                        <NavLink
+                           className={location === "/movies" ? "link navigation__link navigation__link_active" : "link navigation__link"} to="/movies">
                            Фильмы
                         </NavLink>
                      </li>
@@ -45,16 +44,14 @@ const Navigation = ({ loggedIn }) => {
                <Link className="link navigation__btn-register" to="/signup">Регистрация</Link>
                <Link className="link navigation__btn-login" to="/signin">Войти</Link>
             </div>
-         ) }
+         )}
 
          {!isBurgerMenuOpen && loggedIn ? (
             <button type="button" className='btn burger__btn' onClick={toggleBurgerMenu} />
          ) : <BurgerMenu onClose={toggleBurgerMenu} />
          }
       </nav>
-
    )
 }
-
 
 export default Navigation;

@@ -1,8 +1,4 @@
-//const BASE_API_URL = 'https://api.volserma-movies.nomoredomainsicu.ru';
-//'http://localhost:3000';
-
 import { URL_MOVIE, BASE_API_URL } from './constant';
-
 
 const headers = {
    Accept: 'application/json',
@@ -108,8 +104,7 @@ export const register = ({ name, email, password }) => {
     }),
    })
    .then((res) => checkResponse(res))
-   
- };
+    };
  
  export const deleteMovie = (movieId) => {
    const token = localStorage.getItem('token');

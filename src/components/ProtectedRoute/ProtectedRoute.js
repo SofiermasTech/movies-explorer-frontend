@@ -7,4 +7,5 @@ function ProtectedRoute({ element: Component, ...props }) {
       <Navigate to="/" replace />
    );
 }
+
 export default ProtectedRoute;

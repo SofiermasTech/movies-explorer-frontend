@@ -1,4 +1,5 @@
 .movies {
+   max-width: 100%;
    padding: 70px;
    display: flex;
    flex-direction: column;
@@ -11,7 +12,7 @@
    padding: 0;
    margin: 0 auto;
    display: grid;
-   grid-template-columns: repeat(3, 1fr);
+   grid-template-columns: repeat(3, minmax(360px, 1fr));
    justify-content: center;
    gap: 50px 30px;
 }
@@ -34,6 +35,13 @@
    border-radius: 6px;
 }
 
+@media screen and (max-width: 1140px) {
+  
+   .movies__list {
+            grid-template-columns: repeat(2, minmax(360px, 1fr));
+   }
+}
+
 @media screen and (max-width: 930px) {
    .movies {
       padding: 70px 30px 0;
@@ -48,7 +56,6 @@
       padding-top: 60px;
    }
 }
-
 
 @media screen and (max-width: 730px) {
    .movies {
