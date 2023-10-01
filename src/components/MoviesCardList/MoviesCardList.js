@@ -34,7 +34,7 @@ const MoviesCardList = ({
 
    useEffect(() => {
       if (screenWidth > BIG_SCREEN_WIDTH) {
-         setShowMovieList(movies.slice(0, CARDS_MOVIES_BIG,))
+         setShowMovieList(movies.slice(0, CARDS_MOVIES_BIG))
       } else if (screenWidth > SMALL_SCREEN_WIDTH && screenWidth <= BIG_SCREEN_WIDTH) {
          setShowMovieList(movies.slice(0, CARDS_MOVIES_MIDDLE));
       } else if (screenWidth <= SMALL_SCREEN_WIDTH) {
@@ -59,7 +59,7 @@ const MoviesCardList = ({
             })}
          </ul>
          <div className="movies__btn-container">
-            {!isSavedMoviesPage && showMovieList && searchedMoviesCount !== showMovieList.length && (
+            {isSavedMoviesPage && showMovieList && searchedMoviesCount !== showMovieList.length && (
                <button className="btn movies__btn-else" onClick={handleMoreClick}               >
                   Ещё
                </button>

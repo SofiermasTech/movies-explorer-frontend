@@ -25,10 +25,11 @@ const Movies = ({
    const [searchedMovies, setSearchedMovies] = useState([]);
    // eslint-disable-next-line no-unused-vars
    const [notFound, setNotFound] = useState(false);
+   const [initialMovies, setInitialMovies] = useState([]);
 
    useEffect(() => {
       if (searchedMovies.length === 0) {
-         setErrorMessage('Вы еще ничего не искали.')
+         setErrorMessage('Нет результатов поиска.')
       } else {
          setSearchedMovies(searchedMovies);
          setErrorMessage('');
@@ -40,7 +41,7 @@ const Movies = ({
          const movies = JSON.parse(
             localStorage.getItem('movies')
          );
-         setSearchedMovies(movies);
+         setInitialMovies(movies);
          if (
             localStorage.getItem('shortMovies') === 'true'
          ) {
@@ -68,7 +69,7 @@ const Movies = ({
       } else {
          setNotFound(false);
       }
-      setSearchedMovies(moviesList);
+      setInitialMovies(moviesList);
       setSearchedMovies(
          moviesCheckbox ? filterShortMovies(moviesList) : moviesList
       );
@@ -76,7 +77,7 @@ const Movies = ({
    }
 
    const searchMovies = (searchRequest) => {
-      if (searchRequest.trim().length === 0) {
+      if ((searchRequest || '').trim().length === 0) {
          setPopupMessage(ERROR_TEXT_KEY_WORD);
          setIsPopupOpen(true);
          return;
@@ -103,18 +104,18 @@ const Movies = ({
             })
       } else {
          handleFilteredMovies(movies, searchRequest, isMovieFilter);
-      }
+      } 
    }
 
    const handleShortFilms = () => {
       setIsMovieFilter(!isMovieFilter);
       if (!isMovieFilter) {
-         setSearchedMovies(filterShortMovies(searchedMovies));
+         setSearchedMovies(filterShortMovies(initialMovies));
          if (filterMovies.length === 0) {
             setNotFound(true);
          }
       } else {
-         setSearchedMovies(searchedMovies);
+         setSearchedMovies(initialMovies);
       }
       localStorage.setItem('shortMovies', !isMovieFilter);
    }
