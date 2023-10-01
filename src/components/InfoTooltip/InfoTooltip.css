@@ -2,7 +2,7 @@
    display: flex;
    visibility: hidden;
    opacity: 0;
-   transition: opacity 0.8s linear;
+   transition: opacity .2s linear;
    font-family: 'Inter', Arial, Helvetica, sans-serif;
    justify-content: center;
    position: fixed;
@@ -10,6 +10,7 @@
    right: 0;
    bottom: 0;
    left: 0;
+   z-index: 100;
 }
 
 .popup_opened {
@@ -29,13 +30,6 @@
    box-sizing: border-box;
    position: fixed;
    text-align: center;
-}
-
-@media screen and (max-width: 480px) {
-   .popup__container {
-      max-width: 282px;
-      padding: 25px 22px;
-   }
 }
 
 .popup__close {
@@ -61,5 +55,12 @@
       width: 20px;
       height: 20px;
       right: 0;
+   }
+}
+
+@media screen and (max-width: 480px) {
+   .popup__container {
+      max-width: 282px;
+      padding: 25px 22px;
    }
 }

@@ -8,6 +8,7 @@ import Preloader from '../Preloader/Preloader';
 import { filterMovies, filterShortMovies } from '../../utils/utils';
 import { ERROR_TEXT_NOTFOUND, ERROR_TEXT_NOT_SAVE, ERROR_TEXT_KEY_WORD } from '../../utils/constant';
 
+
 const SavedMovies = ({
    savedMovies,
    isLoading,
@@ -23,10 +24,11 @@ const SavedMovies = ({
    // eslint-disable-next-line no-unused-vars
    const [notFound, setNotFound] = useState(false);
    const [searchedMovies, setSearchedMovies] = useState(renderedMovies);
+  
 
    useEffect(() => {
       if (savedMovies.length === 0) {
-         setErrorMessage(ERROR_TEXT_NOT_SAVE)
+         setErrorMessage(ERROR_TEXT_NOT_SAVE);
       } else {
          setRenderedMovies(savedMovies);
          setErrorMessage('');
@@ -45,6 +47,7 @@ const SavedMovies = ({
          setNotFound(true);
          setPopupMessage(ERROR_TEXT_NOTFOUND);
          setIsPopupOpen(true);
+
       } else {
          setNotFound(false);
          setSearchedMovies(moviesList);
@@ -64,6 +67,7 @@ const SavedMovies = ({
          searchedMovies.length === 0 ? setNotFound(true) : setNotFound(false);
          setRenderedMovies(searchedMovies);
       }
+
    }
 
    useEffect(() => {
@@ -91,7 +95,6 @@ const SavedMovies = ({
             onSearchMovies={handleSearchSavedMovies}
             onFilter={handleShortSavedFilms}
          />
-
          {isLoading && (
             <Preloader />
          )}

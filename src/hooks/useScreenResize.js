@@ -9,7 +9,7 @@ export default function useScreenResize() {
          setScreenWidth(getScreenWidth());
       };
 
-      window.addEventListener('resize', resizeController, false);
+      window.addEventListener('resize', resizeController);
 
       let resizeTimer;
 
