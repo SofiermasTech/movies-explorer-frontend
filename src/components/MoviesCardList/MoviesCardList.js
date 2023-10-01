@@ -59,7 +59,7 @@ const MoviesCardList = ({
             })}
          </ul>
          <div className="movies__btn-container">
-            {isSavedMoviesPage && showMovieList && searchedMoviesCount !== showMovieList.length && (
+            {!isSavedMoviesPage && showMovieList && searchedMoviesCount !== showMovieList.length && (
                <button className="btn movies__btn-else" onClick={handleMoreClick}               >
                   Ещё
                </button>
