@@ -1,0 +1,32 @@
+.nav {
+   background-color: black;
+   min-height: 66px;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.nav__list {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+   display: flex;
+   justify-content: center;
+}
+
+.nav__item {
+   margin: 0 20px;
+   color: #fff;
+   font-weight: 500;
+   font-size: 13px;
+   line-height: 16px;
+   border-bottom: solid 1px #fff;
+}
+
+@media screen and (max-width: 500px) {
+   .nav__item {
+      margin: 0 10px;
+      font-size: 11px;
+   }
+}

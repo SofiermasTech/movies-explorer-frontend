@@ -1,13 +1,42 @@
+@import url('./vendor/normalize.css');
+@import url('./vendor/fonts.css');
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+   min-width: 320px;
+   margin: 0 auto;
+   background-size: 100%;
+   background-color: #fff;
+   box-sizing: border-box;
+   font-family: 'Inter', 'Arial', sans-serif;
+   -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased;
+   -webkit-text-size-adjust: 100%;
+   -ms-text-size-adjust: 100%;
+   -moz-text-size-adjust: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.page {
+   display: flex;
+   flex-direction: column;
+}
+
+.link {
+   color: black;
+   text-decoration: none;
+   transition: 0.3s ease;
+   cursor: pointer;
+}
+
+.link:hover {
+   opacity: .7;
+}
+
+.btn {
+   border: none;
+   transition: 0.3s ease;
+   cursor: pointer;
+}
+
+.btn:hover {
+   opacity: .8;
 }
